@@ -6,11 +6,15 @@ import { auth } from './firebase';
 const EmailButton = () => {
 
     const signInGoogle = async () => {
-
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider)
-        
-    };
+        try {
+          const result = await signInWithPopup(auth, provider);
+          console.log('User signed in:', result.user);
+        } catch (error) {
+          console.error('Error during sign-in:', error.message);
+        }
+      };
+      
     
 
     return (
